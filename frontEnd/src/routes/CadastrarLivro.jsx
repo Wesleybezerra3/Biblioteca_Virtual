@@ -10,10 +10,11 @@ export default function CadastrarLivro() {
     ano_de_publicacao: null ,
     genero: "",
     disponibilidade: true,
+    caminho_livro: ""
   })
 
 
- function getValues(e){
+ function getData(e){
   const {name, value} = e.target;
   setLivroData({...livroData, [name]: value})
  }
@@ -29,7 +30,7 @@ export default function CadastrarLivro() {
     }
     e.preventDefault();
     axios
-      .post("http://localhost:5000/livros", livroData)
+      .post("http://localhost:5000/livros/add", livroData)
       .then((response) => {
         alert("Livro adicionado com sucesso!");
         console.log(livroData)
@@ -52,7 +53,7 @@ export default function CadastrarLivro() {
           type="text"
           name="titulo"
           value={livroData.titulo}
-          onChange={getValues}
+          onChange={getData}
         />
       </div>
 
@@ -62,7 +63,7 @@ export default function CadastrarLivro() {
           type="text"
           name="autor"
           value={livroData.autor}
-          onChange={getValues}
+          onChange={getData}
         />
       </div>
 
@@ -72,7 +73,7 @@ export default function CadastrarLivro() {
           type="text"
           name="editora"
           value={livroData.editora}
-          onChange={getValues}
+          onChange={getData}
         />
       </div>
 
@@ -82,14 +83,14 @@ export default function CadastrarLivro() {
           type="text"
           name="ano_de_publicacao"
           value={livroData.ano_de_publicacao}
-          onChange={getValues}
+          onChange={getData}
         />
       </div>
 
       <div>
         <label>Gênero:</label>
         
-        <select name="genero" value={livroData.genero} onChange={getValues}>
+        <select name="genero" value={livroData.genero} onChange={getData}>
           <option disabled value=''>-- Selecione --</option>
           <option value="Ação">Ação</option>
           <option value="Aventura">Aventura</option>
@@ -107,6 +108,16 @@ export default function CadastrarLivro() {
           <option value="Biografia e Autobiografia">Biografia e Autobiografia</option>
           <option value="Negócios e Economia">Negócios e Economia</option>
         </select>
+      </div>
+
+      <div>
+        <label>Caminho do livro</label>
+        <input
+          type="text"
+          name="caminho_livro"
+          value={livroData.caminho_livro}
+          onChange={getData}
+        />
       </div>
 
       <button type="submit">Adicionar Livro</button>
