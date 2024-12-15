@@ -8,15 +8,14 @@ export default function Header() {
     <>
     
     <header>
-        <div>
-            <img src={logo} alt="" className='logo'/>
-        </div>
-        <div className='containerSearch'>
-            <input type="text" name="" id="" className='inputSearch' placeholder='Pesquisar' />
-            <button className='btnSearch'></button>
-        </div>
-        <div>
-
+        <div className='containerHeader'>
+          <div>
+              <img src={logo} alt="" className='logo'/>
+          </div>
+          <div>
+            <input type="button" value='favorite' />
+            <input type="button" value='perfil' />
+          </div>
         </div>
     </header>
     

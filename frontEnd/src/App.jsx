@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import '../index.css'
 
-import  Home  from "./routes/Home.jsx";
+import  Home  from "./routes/Home/Home.jsx";
 import  CreateLivro  from './routes/CreateLivros.jsx';
 import UpdateLivros from "./routes/UpdateLivros.jsx";
 export default function App() {

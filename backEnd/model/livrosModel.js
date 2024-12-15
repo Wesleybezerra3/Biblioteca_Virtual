@@ -1,6 +1,6 @@
 const db = require('../config/db');
 
-exports.getAll = (genero,callback) =>{
+exports.getLivros = (genero,callback) =>{
   let query;
   let params = [];
   if(genero){
@@ -9,8 +9,6 @@ exports.getAll = (genero,callback) =>{
   }else{
     query = `SELECT * FROM livros`;
   }
-
-  console.log("Query executada:", query, "Parâmetros:", params);
   
   db.query(query, params, (err,result) =>{
     callback(err, result)

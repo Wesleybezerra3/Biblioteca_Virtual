@@ -3,7 +3,7 @@ const livrosModel = require("../model/livrosModel");
 exports.getLivros = (req, res) => {
   let genero = req.query.genero;
   if(genero){
-    return livrosModel.getAll(genero, (err, result) => {
+    return livrosModel.getLivros(genero, (err, result) => {
       if (err) {
         return res.status(500).json({error:"Erro ao buscar livros"});
       } else {
@@ -12,7 +12,7 @@ exports.getLivros = (req, res) => {
     });
   }
 
-  livrosModel.getAll(null,(err, result) => {
+  livrosModel.getLivros(null,(err, result) => {
     if (err) {
       return res.status(500).send("Erro ao buscar livros", err);
     } else {
