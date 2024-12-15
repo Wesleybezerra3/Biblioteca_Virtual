@@ -1,6 +1,6 @@
 import axios from "axios";
-
 import { useEffect, useState } from "react";
+
 export default function CadastrarLivro() {
 
   const [livroData, setLivroData] = useState({
@@ -9,8 +9,8 @@ export default function CadastrarLivro() {
     editora: "",
     ano_de_publicacao: null ,
     genero: "",
-    disponibilidade: true,
-    caminho_livro: ""
+    caminho_livro: "",
+    capa:""
   })
 
 
@@ -20,7 +20,8 @@ export default function CadastrarLivro() {
  }
 
 
-  function cadastarLivro(e){
+  const createLivro = (e) =>{
+    e.preventDefault();
 
     for(let i in livroData){ 
        if(!livroData[i]){
@@ -28,9 +29,9 @@ export default function CadastrarLivro() {
         return null;
        }
     }
-    e.preventDefault();
+
     axios
-      .post("http://localhost:5000/livros/add", livroData)
+      .post("http://localhost:5000/livros", livroData)
       .then((response) => {
         alert("Livro adicionado com sucesso!");
         console.log(livroData)
@@ -45,7 +46,7 @@ export default function CadastrarLivro() {
     <section>
       <h2>Cadastrar Livro</h2> 
 
-      <form onSubmit={cadastarLivro}>
+      <form onSubmit={createLivro}>
 
       <div>
         <label>Título:</label>
@@ -116,6 +117,15 @@ export default function CadastrarLivro() {
           type="text"
           name="caminho_livro"
           value={livroData.caminho_livro}
+          onChange={getData}
+        />
+      </div>
+      <div>
+        <label >Caminho da Capa</label>
+        <input
+          type="text"
+          name="capa"
+          value={livroData.capa}
           onChange={getData}
         />
       </div>

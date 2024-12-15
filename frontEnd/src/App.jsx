@@ -1,15 +1,18 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import '../index.css'
 
-import  LivrosList  from "./routes/Home.jsx";
-import  CadastrarLivro  from "./routes/CadastrarLivro.jsx";
+import  Home  from "./routes/Home.jsx";
+import  CreateLivro  from './routes/CreateLivros.jsx';
+import UpdateLivros from "./routes/UpdateLivros.jsx";
 export default function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LivrosList />} />
-          <Route path="/cadastrar_livro" element={<CadastrarLivro/>}/>
+          <Route path="/" element={<Home />} />
+          <Route path="/create" element={<CreateLivro/>}/>
+          <Route path="/update" element={<UpdateLivros/>}/>
           <Route path="*" element={<h1>Not Found!</h1>} />
         </Routes>
       </BrowserRouter>
