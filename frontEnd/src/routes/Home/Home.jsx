@@ -4,14 +4,19 @@ import Header from "../../components/header/Header";
 import "./style.css";
 import CardLivro from "../../components/CardLivro/CardLivro";
 import Search from "../../components/Search/Search";
+
 export default function LivrosList() {
   const [livros, setLivros] = useState([]);
   const [error, setError] = useState();
 
+  const atualizarResultados = (data) => {
+    console.log(data);
+    setLivros(data);
+  };
+
   const getLivros = (e) => {
     // Função para requisições dos livros por categoria.
     let genero;
-
     if (e) {
       genero = e.target.value;
       console.log(genero);
@@ -53,7 +58,7 @@ export default function LivrosList() {
     <>
       <Header />
       <main>
-        <div className="sidebar">
+        <aside className="sidebar">
           <ul>
             <li>
               <input onClick={getLivros} type="button" value="Tudo" />
@@ -97,10 +102,11 @@ export default function LivrosList() {
               />
             </li>
           </ul>
-        </div>
+        </aside>
         <section className="containerLivros">
-          <Search/>
+          <Search onSearch={atualizarResultados} />
           <ul>
+            {}
             {livros.map((livro) => (
               <li key={livro.id_livro} id={livro.id_livro}>
                 <CardLivro titulo={livro.titulo} autor={livro.autor} />

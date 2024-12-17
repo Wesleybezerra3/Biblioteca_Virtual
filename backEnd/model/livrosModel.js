@@ -14,6 +14,13 @@ exports.getLivros = (genero,callback) =>{
     callback(err, result)
   });
 };
+exports.searchLivro = (tituloLivro, callback)=>{
+  const query = 'SELECT * FROM livros WHERE titulo LIKE ?'
+  const tituloLike = `${tituloLivro}%`
+  db.query(query, tituloLike, (err, result)=>{
+    callback(err,result)
+  })
+}
 
 exports.create = (novoLivro, callback) =>{
     const query = `INSERT INTO livros (titulo, autor, editora, ano_de_publicacao, genero,caminho_livro, capa) VALUES(?,?,?,?,?,?,?)`

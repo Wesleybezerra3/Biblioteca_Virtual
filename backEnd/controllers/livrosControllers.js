@@ -2,8 +2,8 @@ const livrosModel = require("../model/livrosModel");
 
 exports.getLivros = (req, res) => {
   let genero = req.query.genero;
-  if(genero){
-    return livrosModel.getLivros(genero, (err, result) => {
+  if(!genero || genero === 'Tudo'){
+    return livrosModel.getLivros(null, (err, result) => {
       if (err) {
         return res.status(500).json({error:"Erro ao buscar livros"});
       } else {
@@ -12,14 +12,25 @@ exports.getLivros = (req, res) => {
     });
   }
 
-  livrosModel.getLivros(null,(err, result) => {
+  return livrosModel.getLivros(genero, (err, result) => {
     if (err) {
-      return res.status(500).send("Erro ao buscar livros", err);
+      return res.status(500).json({error:"Erro ao buscar livros"});
     } else {
      return res.status(200).json(result);
     }
   });
 };
+
+exports.searchLivro = (req, res)=>{
+  const titulo = req.query.titulo;
+  return livrosModel.searchLivro(titulo,(err,result)=>{
+    if(err){
+      return res.status(500).json({error: 'Erro ao pesquisar livros!'});
+    }else{
+      return res.status(200).json(result);
+    }
+  })
+}
 
 exports.createLivro = (req, res) => {
   const {
