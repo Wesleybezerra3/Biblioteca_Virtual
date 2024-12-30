@@ -104,8 +104,8 @@ export default function CadastrarLivro() {
           <option value="Distopia">Distopia</option>
           <option value="Drama">Drama</option>
           <option value="Policia">Policial</option>
-          <option value="Mitologia">Mitologia</option>
-          <option value="Infantil">Infantil</option>
+          <option value="Ficção">Ficção</option>
+          <option value="História">História</option>
           <option value="Biografia e Autobiografia">Biografia e Autobiografia</option>
           <option value="Negócios e Economia">Negócios e Economia</option>
         </select>

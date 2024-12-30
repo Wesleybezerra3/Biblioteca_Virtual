@@ -1,94 +1,109 @@
-main{
-    display: flex;
-    width: 100%;
-    
-  }
-  article{
-    width: 300px;
-    height: 400px;
-    background-color: #ddd;
-  }
-.sidebar {
+header {
+  background-color: var(--greenEsmerald);
+  padding: 10px;
+  width: 100%;
+}
+
+.containerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.containerHeader span {
+  font-size: 1.5em;
+  font-family: 'Poppins';
+  color: white;
+  text-align: center;
+  transition:0.3s ease;
+  cursor: pointer;
+}
+.containerHeader span:hover {
+  color: var(--yellow);
+  font-size: 1.8em;
+}
+
+main {
+  display: flex;
+  width: 100%;
+  margin: auto;
+  max-width: 1200px;
+}
+article {
   width: 300px;
-  height: 100vh;
-  background-color: var(--whiteSoft);
-  border-right: 1px solid #ddd;
+  height: 400px;
+  background-color: #ddd;
+}
+
+.sidebar {
+  width: 80%;
   padding: 15px 10px;
-  overflow-y: auto; 
-  scrollbar-width: thin; 
-  scrollbar-color: var(--greenEsmerald) #f0f0f0;
 }
 
 /* Lista */
 .sidebar ul {
+  display: flex;
   list-style: none;
   padding: 0;
   margin: 0;
+  margin-bottom: 20px;
 }
-.sidebar li{
-  margin-bottom: 1.1em;
-}
-
-
-/* Botões */
-.sidebar input[type="button"] {
+.sidebar input {
   width: 100%;
   padding: 10px;
+  background-color: transparent;
   font-size: 1em;
   font-family: "Poppins";
   color: var(--blackSoft);
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  border: none;
+  border-bottom: 1px solid var(--yellow);
   cursor: pointer;
   transition-duration: 0.5s;
 }
 
-.sidebar input[type="button"]:hover {
-  background-color: var(--yellow);
-  color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+.sidebar input:hover {
+  color: var(--yellow);
   font-weight: bolder;
   padding: 12px;
 }
 
-.containerLivros{
-    width: 100%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column;
-     padding: 15px 0px; 
-
+.containerLivros {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  padding: 15px 0px;
 }
-.containerLivros ul{
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    flex-wrap: wrap;
-    gap: 30px;
-
+.containerLivros ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 30px;
 }
 
 @media (max-width: 800px) {
+  .containerHeader span{
+    display: none;
+  }
+  .containerHeader{
+    justify-content: space-between;
+  }
   .sidebar {
     width: 100%;
-    height: 100px;
-    overflow-x: auto;
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: center;
   }
   .sidebar ul {
     display: flex;
     align-items: center;
+    justify-content: center;
+
     gap: 20px;
   }
-  .sidebar li {
-    margin-bottom: -10px;
-  }
-  main{
+  main {
     flex-direction: column;
   }
 }

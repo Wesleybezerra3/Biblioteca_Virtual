@@ -20,8 +20,6 @@ export default function Search({onSearch}) {
     <div className="containerSearch">
       <input
         type="text"
-        name=""
-        id=""
         className="inputSearch"
         placeholder="Pesquisar"
       />

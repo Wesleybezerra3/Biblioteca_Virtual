@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Header from "../../components/header/Header";
+import logo from "../../assets/logo.svg";
 import "./style.css";
 import CardLivro from "../../components/CardLivro/CardLivro";
 import Search from "../../components/Search/Search";
@@ -56,60 +56,116 @@ export default function LivrosList() {
 
   return (
     <>
-      <Header />
+      <header>
+        <div className="containerHeader">
+          <div>
+            <img src={logo} alt="logo capitulo verde" className="logo" />
+          </div>
+          <div>
+            <span>D</span>
+            <span>e</span>
+            <span>s</span>
+            <span>c</span>
+            <span>u</span>
+            <span>b</span>
+            <span>r</span>
+            <span>a</span>
+            <span> o</span>
+            <span>s </span>
+            <span>M</span>
+            <span>a</span>
+            <span>i</span>
+            <span>o</span>
+            <span>r</span>
+            <span>e</span>
+            <span>s</span>
+            <span> C</span>
+            <span>l</span>
+            <span>á</span>
+            <span>s</span>
+            <span>s</span>
+            <span>i</span>
+            <span>c</span>
+            <span>o</span>
+            <span>s</span>
+            <span> d</span>
+            <span>a</span>
+            <span> L</span>
+            <span>i</span>
+            <span>t</span>
+            <span>e</span>
+            <span>r</span>
+            <span>a</span>
+            <span>t</span>
+            <span>u</span>
+            <span>r</span>
+            <span>a</span>
+            <span> B</span>
+            <span>r</span>
+            <span>a</span>
+            <span>s</span>
+            <span>i</span>
+            <span>l</span>
+            <span>e</span>
+            <span>i</span>
+            <span>r</span>
+            <span>a</span>
+            {/* Descubra os Maiores Clássicos da Literatura Brasileira */}
+          </div>
+          <div>
+            <button>modo</button>
+             <button className="menu">menu</button>
+          </div>
+        </div>
+      </header>
       <main>
-        <aside className="sidebar">
-          <ul>
-            <li>
-              <input onClick={getLivros} type="button" value="Tudo" />
-            </li>
-            <li>
-              <input onClick={getLivros} type="button" value="Romance" />
-            </li>
-            <li>
-              <input onClick={getLivros} type="button" value="Ação" />
-            </li>
-            <li>
-              <input onClick={getLivros} type="button" value="Poesia" />
-            </li>
-            <li>
-              <input onClick={getLivros} type="button" value="Ficção" />
-            </li>
-            <li>
-              <input onClick={getLivros} type="button" value="Infantil" />
-            </li>
-            <li>
-              <input onClick={getLivros} type="button" value="Crônica" />
-            </li>
-            <li>
-              <input
-                onClick={getLivros}
-                type="button"
-                value="Filosofia/Ensaios"
-              />
-            </li>
-            <li>
-              <input onClick={getLivros} type="button" value="Teatro" />
-            </li>
-            <li>
-              <input onClick={getLivros} type="button" value="História" />
-            </li>
-            <li>
-              <input
-                onClick={getLivros}
-                type="button"
-                value="Biografia/Autobiografia"
-              />
-            </li>
-          </ul>
-        </aside>
         <section className="containerLivros">
           <Search onSearch={atualizarResultados} />
+
+          <aside className="sidebar">
+            <ul>
+              <li>
+                <input onClick={getLivros} type="button" value="Tudo" />
+              </li>
+              <li>
+                <input onClick={getLivros} type="button" value="Romance" />
+              </li>
+              <li>
+                <input onClick={getLivros} type="button" value="Ação" />
+              </li>
+              <li>
+                <input onClick={getLivros} type="button" value="Poesia" />
+              </li>
+              <li>
+                <input onClick={getLivros} type="button" value="Ficção" />
+              </li>
+              <li>
+                <input onClick={getLivros} type="button" value="Crônica" />
+              </li>
+              <li>
+                <input
+                  onClick={getLivros}
+                  type="button"
+                  value="Filosofia/Ensaios"
+                />
+              </li>
+
+              <li>
+                <input onClick={getLivros} type="button" value="História" />
+              </li>
+            </ul>
+          </aside>
+
           <ul>
             {}
             {livros.map((livro) => (
               <li key={livro.id_livro} id={livro.id_livro}>
-                <CardLivro titulo={livro.titulo} autor={livro.autor} />
+                <CardLivro
+                  titulo={livro.titulo}
+                  autor={livro.autor}
+                  capa={livro.capa}
+                  link={livro.caminho_livro}
+                />
               </li>
             ))}
           </ul>
