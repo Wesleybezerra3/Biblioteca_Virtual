@@ -6,24 +6,33 @@ import CardLivro from "../../components/CardLivro/CardLivro";
 import Search from "../../components/Search/Search";
 
 export default function LivrosList() {
+
   const [livros, setLivros] = useState([]);
+  const [filterData, setFilterData] = useState({
+    autor: '',
+    genero:''
+  })
   const [error, setError] = useState();
 
   const atualizarResultados = (data) => {
     console.log(data);
     setLivros(data);
   };
+  const getData = (e)=>{
+      const {name , value} = e.target
+      setFilterData({...filterData, [name]: value})
+  }
 
-  const getLivros = (e) => {
-    // Função para requisições dos livros por categoria.
-    let genero;
-    if (e) {
-      genero = e.target.value;
-      console.log(genero);
-    }
+  const filter = (e)=>{
+    e.preventDefault();
 
+    requisicao(filterData.autor, filterData.genero)
+    console.log(filterData)
+  };
+
+  const requisicao = (autor = '', genero = '') => {
     axios
-      .get("http://localhost:5000/livros", { params: { genero } })
+      .get("http://localhost:5000/livros", { params: {autor, genero} })
       .then((response) => {
         setLivros(response.data);
         console.log(response.data);
@@ -38,21 +47,21 @@ export default function LivrosList() {
   };
 
   useEffect(() => {
-    getLivros();
+    requisicao()
   }, []);
 
-  const deleteLivro = (e) => {
-    const livroId = e.target.parentElement.getAttribute("id");
-    axios
-      .delete("http://localhost:5000/livros", { data: { id: livroId } })
-      .then((response) => {
-        alert("Livro deletado!");
-        console.log(response.data);
-      })
-      .catch((err) => {
-        console.error("erro ao deletar livro!", err);
-      });
-  };
+  // const deleteLivro = (e) => {
+  //   const livroId = e.target.parentElement.getAttribute("id");
+  //   axios
+  //     .delete("http://localhost:5000/livros", { data: { id: livroId } })
+  //     .then((response) => {
+  //       alert("Livro deletado!");
+  //       console.log(response.data);
+  //     })
+  //     .catch((err) => {
+  //       console.error("erro ao deletar livro!", err);
+  //     });
+  // };
 
   return (
     <>
@@ -114,7 +123,7 @@ export default function LivrosList() {
           </div>
           <div>
             <button>modo</button>
-             <button className="menu">menu</button>
+            <button className="menu">menu</button>
           </div>
         </div>
       </header>
@@ -122,39 +131,44 @@ export default function LivrosList() {
         <section className="containerLivros">
           <Search onSearch={atualizarResultados} />
 
-          <aside className="sidebar">
-            <ul>
-              <li>
-                <input onClick={getLivros} type="button" value="Tudo" />
-              </li>
-              <li>
-                <input onClick={getLivros} type="button" value="Romance" />
-              </li>
-              <li>
-                <input onClick={getLivros} type="button" value="Ação" />
-              </li>
-              <li>
-                <input onClick={getLivros} type="button" value="Poesia" />
-              </li>
-              <li>
-                <input onClick={getLivros} type="button" value="Ficção" />
-              </li>
-              <li>
-                <input onClick={getLivros} type="button" value="Crônica" />
-              </li>
-              <li>
-                <input
-                  onClick={getLivros}
-                  type="button"
-                  value="Filosofia/Ensaios"
-                />
-              </li>
+          <form onSubmit={filter} className="filter">
+          
+              <select name="autor" value={filterData.autor} onChange={getData}>
+                <option value="" disabled selected>
+                  Autor
+                </option>
+                <option value="">Nenhum</option>
+                <option value="Machado de Assis">Machado de Assis</option>
+                <option value="Aluísio Azevedo">Aluísio Azevedo</option>
+                <option value="José de Alencar">José de Alencar</option>
+                <option value=" Joaquim Manuel de Macedo">
+                  Joaquim Manuel de Macedo
+                </option>
+                <option value="Álvares de Azevedo">Álvares de Azevedo</option>
+                <option value="Lima Barreto">Lima Barreto</option>
+                <option value="Visconde de Taunay">Visconde de Taunay</option>
+                <option value="Frei Vicente do Salvador">
+                  Frei Vicente do Salvador
+                </option>
+              </select>
+            
 
-              <li>
-                <input onClick={getLivros} type="button" value="História" />
-              </li>
-            </ul>
-          </aside>
+            
+              <select name="genero" value={filterData.genero} onChange={getData}>
+                <option disabled selected value="">
+                  Gênero
+                </option>
+                <option value="">Nenhum</option>
+                <option value="Romance">Romance</option>
+                <option value="Crônica">Crônica</option>
+                <option value="Ficção">Ficção</option>
+                <option value="Ação">Ação</option>
+                <option value="História">História</option>
+              </select>
+            
+
+            <button type="submit">Filtrar</button>
+          </form>
 
           <ul>
             {}
@@ -169,10 +183,6 @@ export default function LivrosList() {
               </li>
             ))}
           </ul>
-          {/* <input onClick={deleteLivro} type="button" value="X" /> */}
-          {/* <a href={livro.caminho_livro} target="_blank">
-                  Ler livro
-                </a> */}
         </section>
       </main>
     </>

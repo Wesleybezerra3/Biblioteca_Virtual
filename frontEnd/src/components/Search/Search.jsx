@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
 import axios from "axios";
 
 export default function Search({onSearch}) {
+  const [titulo, setTitulo] = useState()
   const buscarLivro = () => {
-    const titulo = document.querySelector(".inputSearch").value;
      axios
       .get("http://localhost:5000/livros/search", { params: { titulo } })
       .then((response) => {
@@ -22,6 +22,10 @@ export default function Search({onSearch}) {
         type="text"
         className="inputSearch"
         placeholder="Pesquisar"
+        value={titulo}
+        onChange={(e)=>{
+          setTitulo(e.target.value)
+        }}
       />
       <button className="btnSearch" onClick={buscarLivro}></button>
     </div>
