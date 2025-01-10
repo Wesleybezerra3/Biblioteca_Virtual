@@ -41,6 +41,19 @@ export default function CadastrarLivro() {
       }); 
 }
 
+  // const deleteLivro = (e) => {
+  //   const livroId = e.target.parentElement.getAttribute("id");
+  //   axios
+  //     .delete("http://localhost:5000/livros", { data: { id: livroId } })
+  //     .then((response) => {
+  //       alert("Livro deletado!");
+  //       console.log(response.data);
+  //     })
+  //     .catch((err) => {
+  //       console.error("erro ao deletar livro!", err);
+  //     });
+  // };
+
   return(
     <>
     <section>

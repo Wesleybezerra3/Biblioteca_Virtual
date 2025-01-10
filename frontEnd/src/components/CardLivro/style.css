@@ -4,8 +4,8 @@
     justify-content: center;
     flex-direction: column;
     background-color: #ebebeb;
-    width: 280px;
-    height: 450px;
+    width: 250px;
+    height: 420px;
 }
 .infoLivro{
     width: 100%;
@@ -21,8 +21,8 @@
     text-align: center;
 }
 .capaLivro{
-    width: 200px;
-    height: 300px;
+    width: 180px;
+    height: 280px;
     background-color: rgb(121, 121, 121);
 }
 .capaLivro img{

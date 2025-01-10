@@ -1,12 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const livrosController = require('../controllers/livrosControllers')
+const livrosController = require('../controllers/livrosControllers');
 
-router.get('/', livrosController.getLivros);
-router.post('/', livrosController.createLivro);
-router.delete('/', livrosController.deleteLivro);
-router.get('/search', livrosController.searchLivro);
+router.get('/', livrosController.getBooks);
+router.get('/search', livrosController.searchBooks);
 
-
-
-module.exports = router
+router.post('/', livrosController.createBooks);
+// router.delete('/', livrosController.deleteLivro);
+module.exports = router;

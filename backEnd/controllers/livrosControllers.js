@@ -1,59 +1,77 @@
 const { where, Op } = require("sequelize");
-const livrosModel = require("../model/livros");
+const booksModel = require("../model/livros");
 
-exports.getLivros = async (req, res) => {
+// Obtém a lista de livros com filtros opcionais de autor e gênero
+exports.getBooks = async (req, res) => {
   try {
-    const { autor, genero } = req.query;
+    const { autor, genero, titulo } = req.query; // Obtém os parâmetros de consulta (query)
     let whereClause = {};
+    let books;
 
+    // Adiciona filtro de gênero, se especificado
     if (genero) {
       whereClause.genero = genero;
     }
 
+    // Adiciona filtro de autor, se especificado
     if (autor) {
       whereClause.autor = autor;
     }
-    const livros = await livrosModel.findAll({
+
+    if (titulo) {
+      whereClause.titulo = { [Op.like]: `%${titulo}%` };
+    }
+    // Busca os livros no banco de dados com base nos filtros
+    books = await booksModel.findAll({
       where: whereClause,
     });
 
-    const livrosData = livros.map((livro) => livro.get({ plain: true }));
-    return res.status(200).json(livrosData);
+    // Converte os resultados em objetos simples
+    booksData = books.map((book) => book.get({ plain: true }));
+    return res.status(200).json(booksData);
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: "Erro ao buscar livros!" });
   }
 };
 
-exports.searchLivro = async (req, res) => {
+// Busca livros por título, usando uma consulta parcial
+exports.searchBooks = async (req, res) => {
   try {
-    const { titulo } = req.query;
+    const { titulo } = req.query; // Obtém o título da consulta
     let livros;
 
+    // Se o título não for fornecido, retorna todos os livros
     if (!titulo) {
-      livros = await livrosModel.findAll();
-    }
-
-    livros = await livrosModel.findAll({
-      where: {
-        titulo: {
-          [Op.like]: `%${titulo}%`,
+      livros = await booksModel.findAll();
+      return null;
+    } else {
+      // Busca livros cujo título contém a string especificada
+      livros = await booksModel.findAll({
+        where: {
+          titulo: {
+            [Op.like]: `%${titulo}%`, // Filtro "contém" com wildcard (%)
+          },
         },
-      },
-    });
+      });
+    }
 
     if (livros.length === 0) {
-      return res.status(400).json({ mensage: "Nenhum livro encontrado!" });
+      return res.status(200).json([]);
     }
-    const livrosData = livros.map((livro) => livro.get({ plain: true }));
-    return res.status(200).json(livrosData);
+
+    // Converte os resultados em objetos simples
+    const BookData = livros.map((livro) => livro.get({ plain: true }));
+
+    return res.status(200).json(BookData);
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: "Erro ao buscar livros!" });
   }
 };
 
-exports.createLivro = async (req, res) => {
+// Adiciona um novo livro ao banco de dados
+exports.createBooks = async (req, res) => {
   try {
     const {
       titulo,
@@ -63,9 +81,10 @@ exports.createLivro = async (req, res) => {
       genero,
       caminho_livro,
       capa,
-    } = req.body;
+    } = req.body; // Obtém os dados do corpo da requisição
 
-    const novoLivro = await livrosModel.create({
+    // Cria um novo livro no banco de dados
+    const newBook = await booksModel.create({
       titulo,
       autor,
       editora,
@@ -74,7 +93,7 @@ exports.createLivro = async (req, res) => {
       caminho_livro,
       capa,
     });
-    return res.status(201).json(novoLivro);
+    return res.status(201).json(newBook);
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: "Erro ao adicionar livro" });

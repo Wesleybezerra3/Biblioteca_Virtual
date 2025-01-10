@@ -1,0 +1,26 @@
+.filter{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 7em;
+    margin-bottom: 1.5em;
+}
+.container-autor-genero{
+    gap: 0.5em;
+    display: flex;
+}
+.autor-select, .genero-select, .btn-filter{
+    height: 40px;
+    font-family: 'Poppins';
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.btn-filter{
+    margin-left: 20px;
+    color: white;
+    border: none;
+    background-color: var(--greenEsmerald);
+}

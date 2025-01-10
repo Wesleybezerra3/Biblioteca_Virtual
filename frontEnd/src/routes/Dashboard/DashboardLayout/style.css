@@ -1,0 +1,68 @@
+body{
+    background-color: var(--backColor);
+}
+header{
+    background-color: var(--whiteSoft);
+   
+    border: 1px solid #ddd;
+    
+    width: 100%;
+}
+.container-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 90%;
+    margin: auto;
+    gap: 3rem;
+}
+.logo img{
+    width: 70px;
+}
+
+.container-actions{
+display: flex;
+gap: 1em;
+}
+.container-actions img{
+    width: 40px;
+}
+.container-actions button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+aside{
+    background-color: var(--whiteSoft);
+    width: 100px;
+    border: 1px solid #ddd;
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    
+}
+aside img{
+    width: 40px;
+}
+.container-aside-actions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 20px 0;
+}
+.actions-aside{
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+}
+
+@media (max-width: 1024px) {
+aside{
+    display: none;
+}
+.container-header{
+    width: 100%;
+}
+}

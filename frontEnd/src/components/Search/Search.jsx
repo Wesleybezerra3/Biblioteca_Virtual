@@ -1,21 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
+import { search } from "../../modules/search";
 import axios from "axios";
 
-export default function Search({onSearch}) {
-  const [titulo, setTitulo] = useState()
-  const buscarLivro = () => {
-     axios
-      .get("http://localhost:5000/livros/search", { params: { titulo } })
-      .then((response) => {
-        onSearch(response.data);
-        console.log(response.data);
-      })
-      .catch((err) => {
-        console.error("Erro ao pesquisar livros:", err);
-      });
-  };
+export default function Search({ onSearch, btn_color }) {
+  const [titulo, setTitulo] = useState("");
 
+  const searchBooks = async ()=>{
+    if(titulo){
+      onSearch(await search(titulo))
+    }
+   
+  }
   return (
     <div className="containerSearch">
       <input
@@ -23,11 +19,11 @@ export default function Search({onSearch}) {
         className="inputSearch"
         placeholder="Pesquisar"
         value={titulo}
-        onChange={(e)=>{
-          setTitulo(e.target.value)
+        onChange={(e) => {
+          setTitulo(e.target.value);
         }}
       />
-      <button className="btnSearch" onClick={buscarLivro}></button>
+      <button style={{backgroundColor: btn_color}} className="btnSearch" onClick={searchBooks}></button>
     </div>
   );
 }

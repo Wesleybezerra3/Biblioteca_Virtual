@@ -2,12 +2,13 @@ header {
   background-color: var(--greenEsmerald);
   padding: 10px;
   width: 100%;
+  position: fixed;
 }
 
 .containerHeader {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .containerHeader span {
   font-size: 1.5em;
@@ -21,12 +22,16 @@ header {
   color: var(--yellow);
   font-size: 1.8em;
 }
+.containerHeader img{
+  width: 60px;
+}
 
 main {
   display: flex;
+  flex-direction: column;
   width: 100%;
   margin: auto;
-  max-width: 1200px;
+  max-width: 1400px;
 }
 article {
   width: 300px;
@@ -34,55 +39,30 @@ article {
   background-color: #ddd;
 }
 
-.sidebar {
-  width: 80%;
-  padding: 15px 10px;
-}
-
 /* Lista */
-.sidebar ul {
+
+.search-filter{
   display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  margin-bottom: 20px;
+  flex-direction: column;
+  align-items: center;
 }
-.sidebar input {
-  width: 100%;
-  padding: 10px;
-  background-color: transparent;
-  font-size: 1em;
-  font-family: "Poppins";
-  color: var(--blackSoft);
-  border: none;
-  border-bottom: 1px solid var(--yellow);
-  cursor: pointer;
-  transition-duration: 0.5s;
-}
-
-.sidebar input:hover {
-  color: var(--yellow);
-  font-weight: bolder;
-  padding: 12px;
-}
-
-.containerLivros {
-  width: 100%;
+.books-list {
+  width: 80%;
+  margin: auto;
   display: flex;
   justify-content: start;
   align-items: center;
   flex-direction: column;
   padding: 15px 0px;
 }
-.containerLivros ul {
+.books-list ul {
   list-style: none;
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-content: flex-start;
   flex-wrap: wrap;
   gap: 30px;
 }
-
 @media (max-width: 800px) {
   .containerHeader span{
     display: none;
