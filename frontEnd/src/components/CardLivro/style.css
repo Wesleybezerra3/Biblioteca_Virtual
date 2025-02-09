@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: #ebebeb;
+    background-color: var(--whiteSoft);
     width: 250px;
     height: 420px;
 }

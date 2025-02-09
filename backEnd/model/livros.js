@@ -2,7 +2,7 @@ const {Sequelize, DataTypes} = require('sequelize');
 const database = require('../config/db');
 
 const livro = database.define("livros", {
-    id_livro: {
+    id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
@@ -21,19 +21,20 @@ const livro = database.define("livros", {
     },
     ano_de_publicacao: {
       type: DataTypes.INTEGER(4),
-      allowNull: false,
     },
     genero: {
       type: DataTypes.STRING(100),
       allowNull: false,
     },
-    caminho_livro: {
+    arquivo_livro_url: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
-    capa: {
+    capa_livro_url: {
       type: DataTypes.STRING,
-      allowNull: false,
+    },
+    status:{
+      type: DataTypes.ENUM('pendente', 'aprovado', 'rejeitado'),
+      allowNull:false
     }
   },
   {

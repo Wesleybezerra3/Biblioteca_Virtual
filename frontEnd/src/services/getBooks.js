@@ -2,6 +2,7 @@ import axios from "axios";
 export async function req(model) {
 
   try {
+
     let params = {};
     if(model){
       params = model;
@@ -21,9 +22,6 @@ export async function req(model) {
 
   } catch (error) {
     console.error("Erro ao buscar livros:", error);
-    if (error.message) {
-      console.error("Resposta do servidor:", error);
-    }
     return [];
   }
 }

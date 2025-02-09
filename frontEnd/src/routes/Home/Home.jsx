@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 
-import axios from "axios";
-
 import CardLivro from "../../components/CardLivro/CardLivro";
 import Search from "../../components/Search/Search";
-import Letras from "../../components/LetrasAnim/letras";
 import Filter from "../../components/Filter/Filter";
+import Menu from "../../components/Menu/Menu";
 
-import { req } from "../../modules/requisicao";
+import { req } from "../../services/getBooks";
 
 import logo from "../../assets/logo_white.svg";
+import menuIcon from '../../assets/Menu.svg'
 import "./style.css";
 
 
@@ -20,6 +19,8 @@ export default function LivrosList() {
   // Estado para lidar com erros
   const [error, setError] = useState();
 
+  const [visible, setVisible] = useState(false);
+
   // Atualiza a lista de livros se ouver pesquisa ou filtragem ou exibe um erro caso nenhum livro seja encontrado
   const updateResult = (data) => {
     console.log(data);
@@ -28,27 +29,29 @@ export default function LivrosList() {
       return;
     }
     setBooks(data);
-    setError(null)
+    setError(null);
   };
+
+  const activeMenu = () => {};
 
   // Obtém a lista inicial de livros ao montar o componente
   useEffect(() => {
     const getBooks = async () => {
       const booksObtained = await req();
-      if(!booksObtained){
-        setError('Nenhum Livro Encontrado!')
-      }else{
+      if (!booksObtained) {
+        setError("Nenhum Livro Encontrado!");
+      } else {
         setBooks(booksObtained);
       }
     };
     getBooks();
-    console.log(books);
+    // console.log(books);
   }, []);
 
   return (
     <>
       {/* Cabeçalho */}
-      <header>
+      <header id="home-header">
         <div className="containerHeader">
           <div>
             <img src={logo} alt="logo capitulo verde" className="logo" />
@@ -56,15 +59,18 @@ export default function LivrosList() {
           <Search onSearch={updateResult} />
 
           <div>
-            <button>modo</button>
-            <button className="menu">menu</button>
+            <button
+              className="menu-home-btn"
+              onClick={() => setVisible((prevState) => !prevState)}
+            >
+            </button>
           </div>
         </div>
       </header>
+      <Menu isVisible={visible} />
       {/* Conteúdo Principal */}
-      <main>
+      <main id="home-main ">
         <section className="search-filter">
-         
           <Filter onFilter={updateResult} />
         </section>
 
@@ -72,12 +78,12 @@ export default function LivrosList() {
           <ul>
             {books && books.length > 0 && !error
               ? books.map((book) => (
-                  <li key={book.id_livro} id={book.id_livro}>
+                  <li key={book.id} id={book.id}>
                     <CardLivro
                       titulo={book.titulo}
                       autor={book.autor}
-                      capa={book.capa}
-                      link={book.caminho_livro}
+                      capa={book.capa_livro_url}
+                      link={book.arquivo_livro_url}
                     />
                   </li>
                 ))
@@ -86,9 +92,7 @@ export default function LivrosList() {
         </section>
       </main>
 
-      <footer>
-        
-      </footer>
+      <footer></footer>
     </>
   );
 }

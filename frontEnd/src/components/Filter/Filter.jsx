@@ -15,7 +15,7 @@ export default function Filter({onFilter}) {
     setFilterData({ ...filterData, [name]: value });
   };
 
-   // Filtra os livros com base nos critérios definidos pelo usuário
+   // Filtra os livros com base nos critérios definidos pelo usuário e envia para o Home, para exibição
   const applyBookFilter = (e) => {
     e.preventDefault();
     (async () => {

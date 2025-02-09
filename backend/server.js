@@ -1,6 +1,8 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const livrosRoutes = require('./routes/livrosRoutes')
+const userRoutes = require('./routes/userRoutes')
 
 
 const app = express();
@@ -11,6 +13,7 @@ app.use(cors()); //Permitir requisições de origens diferentes (CORS)
 
 
 app.use('/livros', livrosRoutes);
+app.use('/auth', userRoutes);
 
 
 app.listen(port);

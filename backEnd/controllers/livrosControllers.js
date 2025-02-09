@@ -69,6 +69,16 @@ exports.searchBooks = async (req, res) => {
     return res.status(500).json({ error: "Erro ao buscar livros!" });
   }
 };
+//Retorna a quantidade de livros
+exports.count = async (req, res)=>{
+  try{
+    const booksCount = await booksModel.count();
+    return res.status(200).json({countBooks: booksCount || 0})
+  }catch (err) {
+   console.error(err);
+   return res.status(500).json({error:'Erro ao solicitar número de livros'})
+  }
+}
 
 // Adiciona um novo livro ao banco de dados
 exports.createBooks = async (req, res) => {

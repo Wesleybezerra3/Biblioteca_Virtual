@@ -1,7 +1,6 @@
-import {req} from "../modules/requisicao";
+import {req} from "../services/getBooks";
 
 export const filter = async (autor, genero) => {
-  console.log(await req(autor, genero))
   const model = {
     autor: autor,
     genero: genero

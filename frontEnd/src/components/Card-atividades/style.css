@@ -1,0 +1,15 @@
+.p-atv{
+    font-family: 'Open Sans';
+    font-size: 1.3em;
+    background-color: var(--whiteSoft);
+    padding: 10px;
+    border:2px solid #ddd;
+    width: 100%;
+    border-radius: 10px;
+    font-size: 1.2em;
+}
+/* @media (max-width:1024){
+    .p-atv{
+        
+    }
+} */
