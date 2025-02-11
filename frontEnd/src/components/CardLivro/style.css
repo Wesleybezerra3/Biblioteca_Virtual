@@ -17,8 +17,14 @@
 .infoLivro p {
     font-family:'Poppins';
     font-size: 0.9em;
-    width: 90%;
+    width: 100%;
+    padding: 0px 5px;
     text-align: center;
+}
+.infoLivro p:nth-child(2){
+    font-weight: 500;
+    font-size: 1em;
+    color: var(--greenEsmerald);
 }
 .capaLivro{
     width: 180px;

@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+
 
 import CardLivro from "../../components/CardLivro/CardLivro";
 import Search from "../../components/Search/Search";
@@ -6,13 +7,16 @@ import Filter from "../../components/Filter/Filter";
 import Menu from "../../components/Menu/Menu";
 
 import { req } from "../../services/getBooks";
+import api from "../../services/api";
 
 import logo from "../../assets/logo_white.svg";
-import menuIcon from '../../assets/Menu.svg'
+
 import "./style.css";
+import { UserContext } from "../../context/UserContext";
 
 
-export default function LivrosList() {
+export default function Home() {
+  const { user, logUser } = useContext(UserContext);
   // Estado inicial para armazenar os livros obtidos
   const [books, setBooks] = useState([]);
 
@@ -32,9 +36,7 @@ export default function LivrosList() {
     setError(null);
   };
 
-  const activeMenu = () => {};
-
-  // Obtém a lista inicial de livros ao montar o componente
+  // Obtém a lista inicial de livros e autentica o usuário ao montar o componente
   useEffect(() => {
     const getBooks = async () => {
       const booksObtained = await req();
@@ -44,8 +46,27 @@ export default function LivrosList() {
         setBooks(booksObtained);
       }
     };
+
+    const getUser = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          return null;
+        }
+        const response = await api.get("/auth/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const user = response.data;
+        logUser(user);
+        console.log(user)
+      } catch (error) {
+        console.error("Erro ao realizar autenticação");
+      }
+    };
+    getUser();
     getBooks();
-    // console.log(books);
   }, []);
 
   return (
@@ -62,8 +83,7 @@ export default function LivrosList() {
             <button
               className="menu-home-btn"
               onClick={() => setVisible((prevState) => !prevState)}
-            >
-            </button>
+            ></button>
           </div>
         </div>
       </header>

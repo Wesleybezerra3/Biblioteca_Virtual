@@ -17,7 +17,6 @@ export async function req(model) {
     if(response.data.length === 0 ){
       return false;
     }
-    console.log("Livros obtidos com sucesso!", response.data);
     return response.data;
 
   } catch (error) {
