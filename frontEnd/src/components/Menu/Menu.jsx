@@ -37,11 +37,11 @@ export default function Menu({ isVisible }) {
         </header>
 
         <section>
-          <div>
-            <img src={userIcon} alt="" />
-            <p>{user?user.nome:'Faça Login'}</p>
-            <Link to='/login'>Login</Link>
-            <Link to='/register'>Cadastra-se</Link>
+          <div className="header-menu">
+            {/* <img src={userIcon} alt="" /> */}
+            <p>{user?user.nome:''}</p>
+            <Link to='/login' className="link-menu btn-login">Login</Link>
+            <Link to='/register'className="link-menu btn-register">Cadastra-se</Link>
           </div>
         </section>
       </aside>
