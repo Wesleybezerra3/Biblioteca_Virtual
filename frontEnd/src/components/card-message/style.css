@@ -1,0 +1,15 @@
+.card-message{
+    top: 20px;
+    /* background-color: var(-); */
+    width: 100%;
+    font-family: 'Poppins';
+    text-align: center;
+    font-weight: 500;
+    font-size: 1em;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 2px solid; */
+    transition-duration: 0.8s ;
+}

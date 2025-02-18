@@ -1,0 +1,12 @@
+.previous-btn{
+    background-image: url('../../assets/Previous.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+.next-btn{
+    cursor: pointer;
+    background-image: url('../../assets/Next.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}

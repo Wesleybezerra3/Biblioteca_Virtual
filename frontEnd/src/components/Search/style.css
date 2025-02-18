@@ -15,7 +15,7 @@
   width: 100%;
   outline: none;
   border: none;
-  border-radius: 8px;
+  border-radius: 5px;
   font-family: "Roboto";
   font-weight: lighter;
   font-size: 1.2em;
@@ -37,3 +37,14 @@
   cursor: pointer;
   transition-duration:0.5s ;
 }
+@media (max-width: 768px) {
+ .btnSearch{
+  width: 35px;
+  height: 35px;
+  background-size: 20px;
+ }
+ .inputSearch{
+  height: 35px;
+  font-size: 1em;
+ }
+  }

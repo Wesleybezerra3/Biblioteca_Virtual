@@ -1,26 +1,41 @@
-.filter{
-    width: 80%;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 7em;
-    margin-bottom: 1.5em;
+.filter {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6em;
+  margin-bottom: 1.5em;
 }
-.container-autor-genero{
-    gap: 0.5em;
-    display: flex;
+.container-autor-genero {
+  gap: 0.5em;
+  display: flex;
 }
-.autor-select, .genero-select, .btn-filter{
-    height: 40px;
-    font-family: 'Poppins';
-    padding: 10px;
-    border-radius: 8px;
-    cursor: pointer;
+.autor-select,
+.genero-select,
+.btn-filter {
+  height: 40px;
+  font-family: "Poppins";
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
 }
-.btn-filter{
-    margin-left: 20px;
-    color: white;
-    border: none;
-    background-color: var(--greenEsmerald);
+.btn-filter {
+  margin-left: 20px;
+  color: white;
+  border: none;
+  background-color: var(--greenEsmerald);
+}
+
+@media (max-width: 768px) {
+    .filter{
+        width: 90%;
+        padding: 0 10px;
+    }
+    .autor-select{
+        width: 60%;
+    }
+    .genero-select {
+        width: 40%;
+    }
 }
