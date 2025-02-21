@@ -39,11 +39,17 @@ export default function Home() {
   // Obtém a lista inicial de livros e autentica o usuário ao montar o componente
   useEffect(() => {
     const getBooks = async () => {
-      const booksObtained = await req();
-      if (!booksObtained) {
-        setError("Nenhum Livro Encontrado!");
-      } else {
+      try{
+        const booksObtained = await req();
+        console.log('livros obtidos da api:',booksObtained);
         setBooks(booksObtained);
+  
+        if(!Array.isArray(booksObtained)){
+          console.log('erro: resposta inesperada da API')
+          return;
+        }
+      }catch(err){
+        console.error("Erro ao buscar livros:", err);
       }
     };
 
@@ -60,9 +66,8 @@ export default function Home() {
         });
         const user = response.data;
         logUser(user);
-        console.log(user)
       } catch (error) {
-        console.error("Erro ao realizar autenticação");
+        console.log("Erro ao realizar autenticação ou usuário não logado.");
       }
     };
     getUser();

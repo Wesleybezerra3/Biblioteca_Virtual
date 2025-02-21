@@ -1,18 +1,19 @@
 import axios from "axios";
+import api from './api';
 export async function req(model) {
   const limit = 10;
   const page = 1;
   try {
-    let filterParams = {};
-    let pageParams = {}
+     let filterParams = {};
+    // let pageParams = {}
 
-    if (page && limit) {
-      pageParams.limit = limit;
-      pageParams.page = page;
-    } else {
-      pageParams.limit = 10;
-      pageParams.page = 1;
-    }
+    // if (page && limit) {
+    //   pageParams.limit = limit;
+    //   pageParams.page = page;
+    // } else {
+    //   pageParams.limit = 10;
+    //   pageParams.page = 1;
+    // }
 
     if (model) {
       filterParams = model;
@@ -20,8 +21,8 @@ export async function req(model) {
       filterParams = "";
     }
 
-    const response = await axios.get("http://localhost:5000/livros", {
-      params: filterParams,
+    const response = await api.get("/livros", {
+      params: filterParams
     });
 
     if (response.data.length === 0) {
