@@ -13,6 +13,7 @@ import logo from "../../assets/logo_white.svg";
 
 import "./style.css";
 import { UserContext } from "../../context/UserContext";
+import Pagination from "../../components/Paginator";
 
 
 export default function Home() {
@@ -115,6 +116,7 @@ export default function Home() {
               : error}
           </ul>
         </section>
+        <Pagination pages={5}/>
       </main>
 
       <footer></footer>

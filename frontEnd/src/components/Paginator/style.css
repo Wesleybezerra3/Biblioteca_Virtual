@@ -1,12 +1,46 @@
+.btn-nav{
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border: none;
+}
 .previous-btn{
     background-image: url('../../assets/Previous.svg');
     background-size: cover;
     background-repeat: no-repeat;
-    cursor: pointer;
+   
 }
 .next-btn{
     cursor: pointer;
     background-image: url('../../assets/Next.svg');
     background-size: cover;
     background-repeat: no-repeat;
+}
+.container-pagination{
+    display: flex;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    margin: -40px auto 40px auto ;
+    gap: 20px;
+}
+.list-pages{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.btn-pages{
+    width: 30px;
+    height: 30px;
+    border-radius:50% ;
+    border:1px solid var(--greenEsmerald);
+    font-family: 'Poppins';
+    font-weight: 600;
+    color: var(--blackSoft);
+    cursor: pointer;
+}
+.btn-pages:focus{
+    background-color: var(--greenEsmerald);
+    color: var(--yellow);
 }
