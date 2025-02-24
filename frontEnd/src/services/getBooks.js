@@ -1,28 +1,24 @@
-import axios from "axios";
-import api from './api';
-export async function req(model) {
-  const limit = 10;
-  const page = 1;
+import api from "./api";
+export async function req(filters, page) {
   try {
-     let filterParams = {};
-    // let pageParams = {}
+    let params = {};
 
-    // if (page && limit) {
-    //   pageParams.limit = limit;
-    //   pageParams.page = page;
-    // } else {
-    //   pageParams.limit = 10;
-    //   pageParams.page = 1;
-    // }
-
-    if (model) {
-      filterParams = model;
+    if (page) {
+      params.page = page;
     } else {
-      filterParams = "";
+      params.page = 1;
+    }
+
+    if (filters) {
+      params.autor = filters.autor;
+      params.genero = filters.genero;
+    } else {
+      params.autor = "";
+      params.genero = "";
     }
 
     const response = await api.get("/livros", {
-      params: filterParams
+      params: params
     });
 
     if (response.data.length === 0) {

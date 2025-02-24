@@ -12,12 +12,14 @@ import api from "../../services/api";
 import logo from "../../assets/logo_white.svg";
 
 import "./style.css";
-import { UserContext } from "../../context/UserContext";
+import { UserContext,PagesContext } from "../../context/MyContext";
 import Pagination from "../../components/Paginator";
+
 
 
 export default function Home() {
   const { user, logUser } = useContext(UserContext);
+  const { page, setPage } = useContext(PagesContext);
   // Estado inicial para armazenar os livros obtidos
   const [books, setBooks] = useState([]);
 
@@ -38,10 +40,11 @@ export default function Home() {
   };
 
   // Obtém a lista inicial de livros e autentica o usuário ao montar o componente
-  useEffect(() => {
+
+  useEffect(()=>{
     const getBooks = async () => {
       try{
-        const booksObtained = await req();
+        const booksObtained = await req('',page);
         console.log('livros obtidos da api:',booksObtained);
         setBooks(booksObtained);
   
@@ -53,7 +56,11 @@ export default function Home() {
         console.error("Erro ao buscar livros:", err);
       }
     };
+    console.log(page)
+    getBooks();
+  },[page])
 
+  useEffect(() => {
     const getUser = async () => {
       try {
         const token = localStorage.getItem("token");
@@ -72,7 +79,6 @@ export default function Home() {
       }
     };
     getUser();
-    getBooks();
   }, []);
 
   return (
@@ -116,7 +122,7 @@ export default function Home() {
               : error}
           </ul>
         </section>
-        <Pagination pages={5}/>
+        <Pagination/>
       </main>
 
       <footer></footer>

@@ -2,7 +2,7 @@ import React, { useEffect, useState,useContext } from "react";
 import logo from "../../assets/logo_green.svg";
 import userIcon from '../../assets/aside-icons/User.svg'
 import {Link} from 'react-router-dom'
-import { UserContext } from "../../context/UserContext";
+import { UserContext } from "../../context/MyContext";
 import "./style.css";
 
 export default function Menu({ isVisible }) {

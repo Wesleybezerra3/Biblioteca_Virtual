@@ -1,9 +1,9 @@
 import {req} from "../services/getBooks";
 
 export const filter = async (autor, genero) => {
-  const model = {
+  const filters = {
     autor: autor,
     genero: genero
   }
-  return await req(model);
+  return await req(filters);
 };

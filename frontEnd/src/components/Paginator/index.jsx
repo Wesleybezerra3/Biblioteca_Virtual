@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import "./style.css";
+import { PagesContext } from "../../context/MyContext";
 
-export default function Pagination({ pages }) {
+
+export default function Pagination() {
+  const pages = 3;
   const [arrPage, setArrPage] = useState([]);
+  const {page,setPage} = useContext(PagesContext);
 
   const [pagesV, setPagesV] = useState();
+  const pageNav = (page)=>{
+    setPage(page);
+  }
 
   const next = () => {};
   useEffect(() => {
@@ -26,7 +33,7 @@ export default function Pagination({ pages }) {
           {pagesV && pagesV.length > 0 ? (
             pagesV.map((page) => (
               <li key={page} >
-                <input type="button" value={page} className="btn-pages" />
+                <input type="button" value={page} className="btn-pages" onClick={()=>pageNav(page)} />
               </li>
             ))
           ) : (
